@@ -2619,6 +2619,7 @@
 
 <script>
     let popupShown = false; // Variável para controlar se o pop-up já foi mostrado
+    let scrolledTo85 = false; // Variável para controlar se o usuário rolou até 85% da página
 
     // Função para exibir o pop-up
     function showPopup() {
@@ -2633,24 +2634,30 @@
         document.getElementById('popup').style.display = 'none';
     }
 
-    // Exibe o pop-up ao sair da página (Desktop)
+    // Detecta a intenção de saída para usuários de desktop
     document.addEventListener('mouseleave', function(event) {
-        if (event.clientY < 0 && !popupShown && !sessionStorage.getItem("popupShown")) { // Exibe o pop-up quando o mouse sai pelo topo
+        if (event.clientY < 0 && !popupShown && !/Mobi|Android/i.test(navigator.userAgent)) { 
+            // Se o mouse sai da parte superior da tela em um dispositivo desktop
             showPopup();
-            sessionStorage.setItem("popupShown", "true");
         }
     });
 
-    // Exibe o pop-up após 180 segundos em dispositivos móveis
-    if (/Mobi|Android/i.test(navigator.userAgent)) { // Verifica se é um dispositivo móvel
-        setTimeout(function() {
-            if (!popupShown && !sessionStorage.getItem("popupShown")) {
-                showPopup();
-                sessionStorage.setItem("popupShown", "true");
-            }
-        }, 180000); // 180 segundos = 3 minutos
-    }
+    // Detecta quando o usuário rola até 85% da página e volta ao topo no mobile
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const pageHeight = document.documentElement.scrollHeight;
+
+        if (scrollPosition / pageHeight >= 0.85) { // Marca que o usuário rolou até 85% da página
+            scrolledTo85 = true;
+        }
+
+        // Exibe o pop-up ao voltar ao topo (scroll 0) após rolar 85% da página
+        if (scrolledTo85 && window.scrollY === 0 && !popupShown && /Mobi|Android/i.test(navigator.userAgent)) {
+            showPopup();
+        }
+    });
 </script>
+
 
   </body>
 </html>
