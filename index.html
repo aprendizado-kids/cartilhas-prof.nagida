@@ -2555,6 +2555,7 @@
         <h2>Espere! Não Vá Ainda!</h2>
         <p>Parece que você está prestes a sair da página. Antes de ir, temos uma oferta incrível para você!</p>
         <p><strong>Leve o nosso Kit Reforço Escolar por apenas R$ 29,90!</strong></p>
+        <p>Essa é a chance de se destacar e potencializar os resultados dos seus alunos. Você não vai querer perder essa oportunidade!</p>
         <button class="offer-btn" onclick="window.open('https://go.hotmart.com/C96062750X?dp=1', '_blank');">Sim, quero aproveitar!</button>
         <button class="close-btn" onclick="closePopup();">Não, obrigado</button>
     </div>
@@ -2581,11 +2582,15 @@
         border-radius: 10px;
         text-align: center;
         width: 90%; /* Ajusta para 90% da largura em dispositivos móveis */
-        max-width: 400px;
+        max-width: 400px; /* Limite de largura para não ser muito largo */
     }
 
     h2 {
         color: #d9534f; /* Vermelho Escuro */
+    }
+
+    p {
+        margin: 10px 0;
     }
 
     .close-btn {
@@ -2614,12 +2619,11 @@
 </style>
 
 <script>
-    let popupShown = false; // Controle de exibição do pop-up
-    let scrolledTo85 = false; // Controle para detectar 85% de rolagem
+    let popupShown = false; // Variável para controlar se o pop-up já foi mostrado
 
     // Função para exibir o pop-up
     function showPopup() {
-        if (!popupShown) {
+        if (!popupShown) { // Garante que o pop-up só será exibido uma vez
             document.getElementById('popup').style.display = 'flex';
             popupShown = true;
         }
@@ -2630,28 +2634,25 @@
         document.getElementById('popup').style.display = 'none';
     }
 
-    // Evento para detectar intenção de sair no desktop
-    document.addEventListener('mouseout', function(event) {
-        if (event.clientY <= 0 && !popupShown && !/Mobi|Android/i.test(navigator.userAgent)) {
+    // Exibe o pop-up ao sair da página (Desktop)
+    document.addEventListener('mouseleave', function(event) {
+        if (event.clientY < 0 && !popupShown && !sessionStorage.getItem("popupShown")) { // Exibe o pop-up quando o mouse sai pelo topo
             showPopup();
+            sessionStorage.setItem("popupShown", "true");
         }
     });
 
-    // Evento de rolagem para detectar 85% da página no mobile
-    window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY + window.innerHeight;
-        const pageHeight = document.documentElement.scrollHeight;
-
-        if (scrollPosition / pageHeight >= 0.85) {
-            scrolledTo85 = true; // Marca que 85% foi atingido
-        }
-
-        // Exibe o pop-up se o usuário rolar de volta ao topo após atingir 85%
-        if (scrolledTo85 && window.scrollY === 0 && !popupShown && /Mobi|Android/i.test(navigator.userAgent)) {
-            showPopup();
-        }
-    });
+    // Exibe o pop-up após 180 segundos em dispositivos móveis
+    if (/Mobi|Android/i.test(navigator.userAgent)) { // Verifica se é um dispositivo móvel
+        setTimeout(function() {
+            if (!popupShown && !sessionStorage.getItem("popupShown")) {
+                showPopup();
+                sessionStorage.setItem("popupShown", "true");
+            }
+        }, 180000); // 180 segundos = 3 minutos
+    }
 </script>
+
 
 
 
