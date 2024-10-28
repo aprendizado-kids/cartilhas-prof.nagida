@@ -2549,19 +2549,22 @@
       src="https://profnagida.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.24.7"
       id="elementor-frontend-js"
     >
+<!-- Pop-up HTML -->
 <div id="popup">
     <div class="popup-content">
         <h2>Espere! Não Vá Ainda!</h2>
         <p>Parece que você está prestes a sair da página. Antes de ir, temos uma oferta incrível para você!</p>
         <p><strong>Leve o nosso Kit Reforço Escolar por apenas R$ 29,90!</strong></p>
+        <p>Essa é a chance de se destacar e potencializar os resultados dos seus alunos. Você não vai querer perder essa oportunidade!</p>
         <button class="offer-btn" onclick="window.open('https://go.hotmart.com/C96062750X?dp=1', '_blank');">Sim, quero aproveitar!</button>
         <button class="close-btn" onclick="closePopup();">Não, obrigado</button>
     </div>
 </div>
 
 <style>
+    /* Estilos do Pop-up */
     #popup {
-        display: none;
+        display: none; /* Esconde o pop-up inicialmente */
         position: fixed;
         top: 0;
         left: 0;
@@ -2578,62 +2581,78 @@
         padding: 30px;
         border-radius: 10px;
         text-align: center;
-        width: 90%;
-        max-width: 400px;
+        width: 90%; /* Ajusta para 90% da largura em dispositivos móveis */
+        max-width: 400px; /* Limite de largura para não ser muito largo */
     }
 
     h2 {
-        color: #d9534f;
+        color: #d9534f; /* Vermelho Escuro */
     }
 
-    .close-btn, .offer-btn {
-        margin-top: 10px;
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
+    p {
+        margin: 10px 0;
+    }
+
+    .close-btn {
+        background-color: #f44336; /* Vermelho */
         color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 5px;
     }
 
-    .close-btn { background-color: #f44336; }
-    .offer-btn { background-color: #5cb85c; }
-    .offer-btn:hover, .close-btn:hover { opacity: 0.9; }
+    .offer-btn {
+        background-color: #5cb85c; /* Verde */
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .offer-btn:hover, .close-btn:hover {
+        opacity: 0.9; /* Efeito de hover */
+    }
 </style>
 
 <script>
-    let popupShown = false;
-    let scrolledTo85 = false;
+    let popupShown = false; // Variável para controlar se o pop-up já foi mostrado
 
+    // Função para exibir o pop-up
     function showPopup() {
-        if (!popupShown) {
+        if (!popupShown) { // Garante que o pop-up só será exibido uma vez
             document.getElementById('popup').style.display = 'flex';
             popupShown = true;
         }
     }
 
+    // Função para fechar o pop-up
     function closePopup() {
         document.getElementById('popup').style.display = 'none';
     }
 
-    document.addEventListener('mouseout', function(event) {
-        if (event.clientY <= 0 && !popupShown && !/Mobi|Android/i.test(navigator.userAgent)) {
+    // Exibe o pop-up ao sair da página (Desktop)
+    document.addEventListener('mouseleave', function(event) {
+        if (event.clientY < 0 && !popupShown && !sessionStorage.getItem("popupShown")) { // Exibe o pop-up quando o mouse sai pelo topo
             showPopup();
+            sessionStorage.setItem("popupShown", "true");
         }
     });
 
-    window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY + window.innerHeight;
-        const pageHeight = document.documentElement.scrollHeight;
-
-        if (scrollPosition / pageHeight >= 0.85) {
-            scrolledTo85 = true;
-        }
-
-        if (scrolledTo85 && window.scrollY === 0 && !popupShown && /Mobi|Android/i.test(navigator.userAgent)) {
-            showPopup();
-        }
-    });
+    // Exibe o pop-up após 180 segundos em dispositivos móveis
+    if (/Mobi|Android/i.test(navigator.userAgent)) { // Verifica se é um dispositivo móvel
+        setTimeout(function() {
+            if (!popupShown && !sessionStorage.getItem("popupShown")) {
+                showPopup();
+                sessionStorage.setItem("popupShown", "true");
+            }
+        }, 180000); // 180 segundos = 3 minutos
+    }
 </script>
+
 
   </body>
 </html>
