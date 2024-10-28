@@ -2548,13 +2548,12 @@
       src="https://profnagida.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.24.7"
       id="elementor-frontend-js"
     >
-      <!-- Pop-up HTML -->
+<!-- Pop-up HTML -->
 <div id="popup">
     <div class="popup-content">
         <h2>Espere! Não Vá Ainda!</h2>
         <p>Parece que você está prestes a sair da página. Antes de ir, temos uma oferta incrível para você!</p>
         <p><strong>Leve o nosso Kit Reforço Escolar por apenas R$ 29,90!</strong></p>
-        <p>Essa é a chance de se destacar e potencializar os resultados dos seus alunos. Você não vai querer perder essa oportunidade!</p>
         <button class="offer-btn" onclick="window.open('https://go.hotmart.com/C96062750X?dp=1', '_blank');">Sim, quero aproveitar!</button>
         <button class="close-btn" onclick="closePopup();">Não, obrigado</button>
     </div>
@@ -2581,15 +2580,11 @@
         border-radius: 10px;
         text-align: center;
         width: 90%; /* Ajusta para 90% da largura em dispositivos móveis */
-        max-width: 400px; /* Limite de largura para não ser muito largo */
+        max-width: 400px;
     }
 
     h2 {
         color: #d9534f; /* Vermelho Escuro */
-    }
-
-    p {
-        margin: 10px 0;
     }
 
     .close-btn {
@@ -2618,12 +2613,12 @@
 </style>
 
 <script>
-    let popupShown = false; // Variável para controlar se o pop-up já foi mostrado
-    let scrolledTo85 = false; // Variável para controlar se o usuário rolou até 85% da página
+    let popupShown = false; // Controle de exibição do pop-up
+    let scrolledTo85 = false; // Controle para detectar 85% de rolagem
 
     // Função para exibir o pop-up
     function showPopup() {
-        if (!popupShown) { // Garante que o pop-up só será exibido uma vez
+        if (!popupShown) {
             document.getElementById('popup').style.display = 'flex';
             popupShown = true;
         }
@@ -2634,29 +2629,29 @@
         document.getElementById('popup').style.display = 'none';
     }
 
-    // Detecta a intenção de saída para usuários de desktop
-    document.addEventListener('mouseleave', function(event) {
-        if (event.clientY < 0 && !popupShown && !/Mobi|Android/i.test(navigator.userAgent)) { 
-            // Se o mouse sai da parte superior da tela em um dispositivo desktop
+    // Evento para detectar intenção de sair no desktop
+    document.addEventListener('mouseout', function(event) {
+        if (event.clientY <= 0 && !popupShown && !/Mobi|Android/i.test(navigator.userAgent)) {
             showPopup();
         }
     });
 
-    // Detecta quando o usuário rola até 85% da página e volta ao topo no mobile
+    // Evento de rolagem para detectar 85% da página no mobile
     window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY + window.innerHeight;
         const pageHeight = document.documentElement.scrollHeight;
 
-        if (scrollPosition / pageHeight >= 0.85) { // Marca que o usuário rolou até 85% da página
-            scrolledTo85 = true;
+        if (scrollPosition / pageHeight >= 0.85) {
+            scrolledTo85 = true; // Marca que 85% foi atingido
         }
 
-        // Exibe o pop-up ao voltar ao topo (scroll 0) após rolar 85% da página
+        // Exibe o pop-up se o usuário rolar de volta ao topo após atingir 85%
         if (scrolledTo85 && window.scrollY === 0 && !popupShown && /Mobi|Android/i.test(navigator.userAgent)) {
             showPopup();
         }
     });
 </script>
+
 
 
   </body>
