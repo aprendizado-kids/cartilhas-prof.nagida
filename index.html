@@ -2549,33 +2549,20 @@
       id="elementor-frontend-js"
     ></script>
     <!-- Pop-up HTML -->
-    <div id="popup">
-      <div class="popup-content">
+<div id="popup">
+    <div class="popup-content">
         <h2>Espere! Não Vá Ainda!</h2>
-        <p>
-          Parece que você está prestes a sair. Antes de ir, temos uma oferta
-          incrível para você!
-        </p>
-        <p>
-          <strong>Leve o nosso produto exclusivo por apenas R$ 29,90!</strong>
-        </p>
-        <p>
-          Essa é a sua chance de complementar sua compra e potencializar seus
-          resultados. Você não vai querer perder essa oportunidade!
-        </p>
-        <button
-          class="offer-btn"
-          onclick="window.location.href='URL_DO_DOWNSell';"
-        >
-          Sim, quero aproveitar!
-        </button>
+        <p>Parece que você está prestes a sair. Antes de ir, temos uma oferta incrível para você!</p>
+        <p><strong>Leve o nosso produto exclusivo por apenas R$ 29,90!</strong></p>
+        <p>Essa é a sua chance de complementar sua compra e potencializar seus resultados. Você não vai querer perder essa oportunidade!</p>
+        <button class="offer-btn" onclick="window.location.href='URL_DO_DOWNSell';">Sim, quero aproveitar!</button>
         <button class="close-btn" onclick="closePopup();">Não, obrigado</button>
-      </div>
     </div>
+</div>
 
-    <style>
-      /* Estilos do Pop-up */
-      #popup {
+<style>
+    /* Estilos do Pop-up */
+    #popup {
         display: none; /* Esconde o pop-up inicialmente */
         position: fixed;
         top: 0;
@@ -2586,25 +2573,26 @@
         z-index: 1000;
         justify-content: center;
         align-items: center;
-      }
+    }
 
-      .popup-content {
+    .popup-content {
         background: white;
         padding: 30px;
         border-radius: 10px;
         text-align: center;
-        width: 350px;
-      }
+        width: 90%; /* Ajusta para 90% da largura em dispositivos móveis */
+        max-width: 400px; /* Limite de largura para não ser muito largo */
+    }
 
-      h2 {
+    h2 {
         color: #d9534f; /* Vermelho Escuro */
-      }
+    }
 
-      p {
+    p {
         margin: 10px 0;
-      }
+    }
 
-      .close-btn {
+    .close-btn {
         background-color: #f44336; /* Vermelho */
         color: white;
         border: none;
@@ -2612,9 +2600,9 @@
         cursor: pointer;
         margin-top: 10px;
         border-radius: 5px;
-      }
+    }
 
-      .offer-btn {
+    .offer-btn {
         background-color: #5cb85c; /* Verde */
         color: white;
         border: none;
@@ -2622,32 +2610,45 @@
         cursor: pointer;
         margin-top: 10px;
         border-radius: 5px;
-      }
+    }
 
-      .offer-btn:hover,
-      .close-btn:hover {
+    .offer-btn:hover, .close-btn:hover {
         opacity: 0.9; /* Efeito de hover */
-      }
-    </style>
+    }
+</style>
 
-    <script>
-      // Função para exibir o pop-up
-      function showPopup() {
-        document.getElementById('popup').style.display = 'flex'
-      }
+<script>
+    let popupShown = false; // Variável para controlar se o pop-up já foi mostrado
 
-      // Função para fechar o pop-up
-      function closePopup() {
-        document.getElementById('popup').style.display = 'none'
-      }
-
-      // Detecta o movimento do mouse para fora da janela
-      document.addEventListener('mouseout', function (event) {
-        if (event.clientY < 0) {
-          // Se o mouse sair pela parte superior da janela
-          showPopup()
+    // Função para exibir o pop-up
+    function showPopup() {
+        if (!popupShown) { // Mostra o pop-up apenas uma vez
+            document.getElementById('popup').style.display = 'flex';
+            popupShown = true;
         }
-      })
-    </script>
+    }
+
+    // Função para fechar o pop-up
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    // Detecta o movimento do mouse para fora da janela (Desktop)
+    document.addEventListener('mouseout', function(event) {
+        if (event.clientY < 0) { // Se o mouse sair pela parte superior da janela
+            showPopup();
+        }
+    });
+
+    // Alternativa para Dispositivos Móveis
+    document.addEventListener('scroll', function() {
+        if (window.scrollY === 0) { // Se o usuário rolar para cima
+            showPopup();
+        }
+    });
+
+    // Tempo de espera para mostrar o pop-up em dispositivos móveis
+    setTimeout(showPopup, 15000); // Mostra o pop-up após 15 segundos
+</script>
   </body>
 </html>
