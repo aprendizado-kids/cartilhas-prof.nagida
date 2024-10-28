@@ -4,6 +4,24 @@
     <meta charset="UTF-8" />
     <title>Combo Cartilhas &#8211; Prof. Nágida &#8211; Prof. Nágida</title>
     <meta name="robots" content="max-image-preview:large" />
+       <style>
+        /* Evitar o scroll lateral */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Manter imagens e outros elementos dentro da largura do viewport */
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Garantir que padding e border sejam inclusos na largura total do elemento */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+    </style>
 
     <script>
       dataLayer = [
@@ -2556,10 +2574,6 @@
            id="elementor-frontend-js"
          >
     </script>
-   <!-- Botão da oferta principal -->
-<button id="main-offer-btn" onclick="window.location.href='https://oferta-principal.com'; blockDownsellPopup();">
-  Conheça nossa oferta principal
-</button>
 
 <!-- Pop-up HTML -->
 <div id="popup">
