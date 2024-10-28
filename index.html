@@ -2547,8 +2547,8 @@
     <script
       src="https://profnagida.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.24.7"
       id="elementor-frontend-js"
-    ></script>
-    <!-- Pop-up HTML -->
+    >
+      <!-- Pop-up HTML -->
 <div id="popup">
     <div class="popup-content">
         <h2>Espere! Não Vá Ainda!</h2>
@@ -2622,7 +2622,7 @@
 
     // Função para exibir o pop-up
     function showPopup() {
-        if (!popupShown) { // Mostra o pop-up apenas uma vez
+        if (!popupShown) { // Garante que o pop-up só será exibido uma vez
             document.getElementById('popup').style.display = 'flex';
             popupShown = true;
         }
@@ -2633,22 +2633,24 @@
         document.getElementById('popup').style.display = 'none';
     }
 
-    // Detecta o movimento do mouse para fora da janela (Desktop)
-    document.addEventListener('mouseout', function(event) {
-        if (event.clientY < 0) { // Se o mouse sair pela parte superior da janela
+    // Exibe o pop-up ao sair da página (Desktop)
+    document.addEventListener('mouseleave', function(event) {
+        if (event.clientY < 0 && !popupShown && !sessionStorage.getItem("popupShown")) { // Exibe o pop-up quando o mouse sai pelo topo
             showPopup();
+            sessionStorage.setItem("popupShown", "true");
         }
     });
 
-    // Alternativa para Dispositivos Móveis
-    document.addEventListener('scroll', function() {
-        if (window.scrollY === 0) { // Se o usuário rolar para cima
-            showPopup();
-        }
-    });
-
-    // Tempo de espera para mostrar o pop-up em dispositivos móveis
-    setTimeout(showPopup, 180000); // Mostra o pop-up após 180 segundos
+    // Exibe o pop-up após 180 segundos em dispositivos móveis
+    if (/Mobi|Android/i.test(navigator.userAgent)) { // Verifica se é um dispositivo móvel
+        setTimeout(function() {
+            if (!popupShown && !sessionStorage.getItem("popupShown")) {
+                showPopup();
+                sessionStorage.setItem("popupShown", "true");
+            }
+        }, 180000); // 180 segundos = 3 minutos
+    }
 </script>
+
   </body>
 </html>
