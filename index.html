@@ -2549,21 +2549,38 @@
       src="https://profnagida.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.24.7"
       id="elementor-frontend-js"
     >
-<!-- Pop-up HTML -->
-<div id="popup">
-    <div class="popup-content">
+ <script
+      src="https://profnagida.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.24.7"
+      id="elementor-frontend-js"
+    ></script>
+    <!-- Pop-up HTML -->
+    <div id="popup">
+      <div class="popup-content">
         <h2>Espere! Não Vá Ainda!</h2>
-        <p>Parece que você está prestes a sair da página. Antes de ir, temos uma oferta incrível para você!</p>
-        <p><strong>Leve o nosso Kit Reforço Escolar por apenas R$ 29,90!</strong></p>
-        <p>Essa é a chance de se destacar e potencializar os resultados dos seus alunos. Você não vai querer perder essa oportunidade!</p>
-        <button class="offer-btn" onclick="window.open('https://go.hotmart.com/C96062750X?dp=1', '_blank');">Sim, quero aproveitar!</button>
+        <p>
+          Parece que você está prestes a sair da página. Antes de ir, temos uma oferta
+          incrível para você!
+        </p>
+        <p>
+          <strong>Leve o Kit Reforço Escolar por apenas R$ 29,90!</strong>
+        </p>
+        <p>
+          Essa é a sua chance de se destacar em sala de aula e ampliar seus
+          resultados. Você não vai querer perder essa oportunidade!
+        </p>
+        <button
+          class="offer-btn"
+          onclick="window.location.href='URL_DO_DOWNSell';"
+        >
+          Sim, quero aproveitar!
+        </button>
         <button class="close-btn" onclick="closePopup();">Não, obrigado</button>
+      </div>
     </div>
-</div>
 
-<style>
-    /* Estilos do Pop-up */
-    #popup {
+    <style>
+      /* Estilos do Pop-up */
+      #popup {
         display: none; /* Esconde o pop-up inicialmente */
         position: fixed;
         top: 0;
@@ -2574,26 +2591,25 @@
         z-index: 1000;
         justify-content: center;
         align-items: center;
-    }
+      }
 
-    .popup-content {
+      .popup-content {
         background: white;
         padding: 30px;
         border-radius: 10px;
         text-align: center;
-        width: 90%; /* Ajusta para 90% da largura em dispositivos móveis */
-        max-width: 400px; /* Limite de largura para não ser muito largo */
-    }
+        width: 350px;
+      }
 
-    h2 {
+      h2 {
         color: #d9534f; /* Vermelho Escuro */
-    }
+      }
 
-    p {
+      p {
         margin: 10px 0;
-    }
+      }
 
-    .close-btn {
+      .close-btn {
         background-color: #f44336; /* Vermelho */
         color: white;
         border: none;
@@ -2601,9 +2617,9 @@
         cursor: pointer;
         margin-top: 10px;
         border-radius: 5px;
-    }
+      }
 
-    .offer-btn {
+      .offer-btn {
         background-color: #5cb85c; /* Verde */
         color: white;
         border: none;
@@ -2611,47 +2627,35 @@
         cursor: pointer;
         margin-top: 10px;
         border-radius: 5px;
-    }
+      }
 
-    .offer-btn:hover, .close-btn:hover {
+      .offer-btn:hover,
+      .close-btn:hover {
         opacity: 0.9; /* Efeito de hover */
-    }
-</style>
+      }
+    </style>
 
-<script>
-    let popupShown = false; // Variável para controlar se o pop-up já foi mostrado
+    <script>
+      // Função para exibir o pop-up
+      function showPopup() {
+        document.getElementById('popup').style.display = 'flex'
+      }
 
-    // Função para exibir o pop-up
-    function showPopup() {
-        if (!popupShown) { // Garante que o pop-up só será exibido uma vez
-            document.getElementById('popup').style.display = 'flex';
-            popupShown = true;
+      // Função para fechar o pop-up
+      function closePopup() {
+        document.getElementById('popup').style.display = 'none'
+      }
+
+      // Detecta o movimento do mouse para fora da janela
+      document.addEventListener('mouseout', function (event) {
+        if (event.clientY < 0) {
+          // Se o mouse sair pela parte superior da janela
+          showPopup()
         }
-    }
-
-    // Função para fechar o pop-up
-    function closePopup() {
-        document.getElementById('popup').style.display = 'none';
-    }
-
-    // Exibe o pop-up ao sair da página (Desktop)
-    document.addEventListener('mouseleave', function(event) {
-        if (event.clientY < 0 && !popupShown && !sessionStorage.getItem("popupShown")) { // Exibe o pop-up quando o mouse sai pelo topo
-            showPopup();
-            sessionStorage.setItem("popupShown", "true");
-        }
-    });
-
-    // Exibe o pop-up após 180 segundos em dispositivos móveis
-    if (/Mobi|Android/i.test(navigator.userAgent)) { // Verifica se é um dispositivo móvel
-        setTimeout(function() {
-            if (!popupShown && !sessionStorage.getItem("popupShown")) {
-                showPopup();
-                sessionStorage.setItem("popupShown", "true");
-            }
-        }, 180000); // 180 segundos = 3 minutos
-    }
-</script>
+      })
+    </script>
+  </body>
+</html>
 
 
   </body>
