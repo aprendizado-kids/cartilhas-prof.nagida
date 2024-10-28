@@ -2547,106 +2547,134 @@
       src="https://profnagida.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.24.7"
       id="elementor-frontend-js"
     ></script>
-    <!-- Pop-up HTML -->
-    <div id="popup">
-      <div class="popup-content">
-        <h2>Espere! Não Vá Ainda!</h2>
-        <p>
-          Parece que você está prestes a sair da página. Antes de ir, temos uma oferta
-          incrível para você!
-        </p>
-        <p>
-          <strong>Leve o Kit Reforço Escolar por apenas R$ 29,90!</strong>
-        </p>
-        <p>
-          Essa é a sua chance de se destacar em sala de aula e potencializar seus
-          resultados. Você não vai querer perder essa oportunidade!
-        </p>
-        <button
-          class="offer-btn"
-          onclick="window.open('https://go.hotmart.com/C96062750X?dp=1', '_blank');"
-        >
-          Sim, quero aproveitar!
-        </button>
-        <button class="close-btn" onclick="closePopup();">Não, obrigado</button>
-      </div>
-    </div>
+    <!-- INSIRA AQUI O SCRIPT DO POPUP-->
+<!-- Pop-up HTML -->
+<div id="popup">
+  <div class="popup-content">
+    <h2>Espere! Não Vá Ainda!</h2>
+    <p>
+      Parece que você está prestes a sair da página. Antes de ir, temos uma oferta
+      incrível para você!
+    </p>
+    <p>
+      <strong>Leve o Kit Reforço Escolar por apenas R$ 29,90!</strong>
+    </p>
+    <p>
+      Essa é a sua chance de se destacar em sala de aula e potencializar seus
+      resultados. Você não vai querer perder essa oportunidade!
+    </p>
+    <button
+      class="offer-btn"
+      onclick="window.open('https://go.hotmart.com/C96062750X?dp=1', '_blank');"
+    >
+      Sim, quero aproveitar!
+    </button>
+    <button class="close-btn" onclick="closePopup();">Não, obrigado</button>
+  </div>
+</div>
 
-    <style>
-      /* Estilos do Pop-up */
-      #popup {
-        display: none; /* Esconde o pop-up inicialmente */
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 1000;
-        justify-content: center;
-        align-items: center;
-      }
+<style>
+  /* Estilos do Pop-up */
+  #popup {
+    display: none; /* Esconde o pop-up inicialmente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
 
-      .popup-content {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        text-align: center;
-        width: 350px;
-      }
+  .popup-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 350px;
+  }
 
-      h2 {
-        color: #d9534f; /* Vermelho Escuro */
-      }
+  h2 {
+    color: #d9534f; /* Vermelho Escuro */
+  }
 
-      p {
-        margin: 10px 0;
-      }
+  p {
+    margin: 10px 0;
+  }
 
-      .close-btn {
-        background-color: #f44336; /* Vermelho */
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        margin-top: 10px;
-        border-radius: 5px;
-      }
+  .close-btn {
+    background-color: #f44336; /* Vermelho */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
 
-      .offer-btn {
-        background-color: #5cb85c; /* Verde */
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        margin-top: 10px;
-        border-radius: 5px;
-      }
+  .offer-btn {
+    background-color: #5cb85c; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
 
-      .offer-btn:hover,
-      .close-btn:hover {
-        opacity: 0.9; /* Efeito de hover */
-      }
-    </style>
+  .offer-btn:hover,
+  .close-btn:hover {
+    opacity: 0.9; /* Efeito de hover */
+  }
+</style>
 
-    <script>
-      // Função para exibir o pop-up
-      function showPopup() {
-        document.getElementById('popup').style.display = 'flex'
-      }
+<script>
+  // Variáveis para controlar o estado do popup e temporizador
+  let popupShown = false;
+  let inactivityTimer;
 
-      // Função para fechar o pop-up
-      function closePopup() {
-        document.getElementById('popup').style.display = 'none'
-      }
+  // Função para exibir o pop-up
+  function showPopup() {
+    if (!popupShown) {
+      document.getElementById('popup').style.display = 'flex';
+      popupShown = true;
+    }
+  }
 
-      // Detecta o movimento do mouse para fora da janela
-      document.addEventListener('mouseout', function (event) {
-        if (event.clientY < 0) {
-          // Se o mouse sair pela parte superior da janela
-          showPopup()
-        }
-      })
-    </script>
+  // Função para fechar o pop-up
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    popupShown = false;
+    resetInactivityTimer(); // Reseta o timer ao fechar
+  }
+
+  // Detecta o movimento do mouse para fora da janela
+  document.addEventListener('mouseout', function (event) {
+    if (event.clientY < 0) {
+      showPopup();
+    }
+  });
+
+  // Função para configurar o timer de inatividade
+  function setupInactivityTimer() {
+    inactivityTimer = setTimeout(showPopup, 70000); // 70 segundos
+  }
+
+  // Função para resetar o timer de inatividade
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    setupInactivityTimer();
+  }
+
+  // Eventos para detectar interação do usuário
+  window.onload = resetInactivityTimer; // Inicia o timer ao carregar
+  document.onmousemove = resetInactivityTimer; // Reseta o timer ao mover o mouse
+  document.onclick = resetInactivityTimer; // Reseta o timer ao clicar
+  document.onkeypress = resetInactivityTimer; // Reseta o timer ao pressionar uma tecla
+</script>
+
+    <!-- FINAL O SCRIPT DO POPUP-->
   </body>
 </html>
