@@ -4,6 +4,59 @@
     <meta charset="UTF-8" />
     <title>Combo Cartilhas &#8211; Prof. Nágida &#8211; Prof. Nágida</title>
     <meta name="robots" content="max-image-preview:large" />
+
+    <script>
+      dataLayer = [
+        {
+          title: 'Combo Cartilhas &#8211; Prof. N\u00e1gida',
+          author: 'Nagida Cardonetti',
+          wordcount: 310,
+          logged_in: 'false',
+          page_id: 9653,
+          post_date: '2023-07-24 12:00:40',
+          post_type: 'page'
+        }
+      ]
+    </script>
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments)
+        }
+        if (!f._fbq) f._fbq = n
+        n.push = n
+        n.loaded = !0
+        n.version = '2.0'
+        n.queue = []
+        t = b.createElement(e)
+        t.async = !0
+        t.src = v
+        s = b.getElementsByTagName(e)[0]
+        s.parentNode.insertBefore(t, s)
+      })(
+        window,
+        document,
+        'script',
+        'https://connect.facebook.net/en_US/fbevents.js'
+      )
+      fbq('init', '1734565434041449')
+      fbq('track', 'PageView')
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1734565434041449&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Google Tag Manager Aqui!-->
+
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link
       rel="alternate"
@@ -759,26 +812,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <!-- CSS para evitar scroll lateral e garantir responsividade -->
-    <style>
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        img, video, iframe {
-            max-width: 100%;
-            height: auto;
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-    </style>
-    <!-- Google Tag Manager Aqui!-->
-
-    <!-- Meta tag para verificação de domínio do Facebook -->
-    <meta name="facebook-domain-verification" content="drenh8t29kgoa24q7irj8c8w5uyyxk" />
   </head>
   <body
     class="page-template page-template-elementor_canvas page page-id-9653 elementor-default elementor-template-canvas elementor-kit-5425 elementor-page elementor-page-9653"
@@ -852,7 +885,6 @@
                       >Aprendizado Divertido e Eficaz para as Primeiras
                       Letras!</span
                     >
-                    <br />
                   </p>
                 </div>
               </div>
@@ -880,11 +912,16 @@
             data-element_type="column"
           >
             <div class="elementor-widget-wrap elementor-element-populated">
-      
+              <div
+                class="elementor-element elementor-element-202de46 elementor-widget elementor-widget-html"
+                data-id="202de46"
+                data-element_type="widget"
+                data-widget_type="html.default"
+              >
                 <div class="elementor-widget-container">
                   <iframe
                     style="opacity: 0"
-                    src="https://aprendizado-kids.github.io/combo-prof.nagida/
+                    src="https://aprendizado-kids.github.io/combo-prof.nagida/"
                   "
                     width="1"
                     height="1"
@@ -1462,7 +1499,7 @@
                     decoding="async"
                     width="800"
                     height="373"
-                    src="Design sem nome.png"
+                    src="assets/Design sem nome.png"
                     class="attachment-large size-large wp-image-9287"
                     alt=""
                     srcset=""
@@ -2230,7 +2267,8 @@
                     >
                       <span class="elementor-button-content-wrapper">
                         <span class="elementor-button-text"
-                          >ACESSAR AS ATIVIDADES</span
+                          >ACESSE AGORA AS ATIVIDADES
+                          </span
                         >
                       </span>
                     </a>
@@ -2508,106 +2546,107 @@
     <script
       src="https://profnagida.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.24.7"
       id="elementor-frontend-js"
-    >
-      <script
-           src="https://profnagida.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.24.7"
-           id="elementor-frontend-js"
-         >
+    ></script>
+    <!-- Pop-up HTML -->
+    <div id="popup">
+      <div class="popup-content">
+        <h2>Espere! Não Vá Ainda!</h2>
+        <p>
+          Parece que você está prestes a sair da página. Antes de ir, temos uma oferta
+          incrível para você!
+        </p>
+        <p>
+          <strong>Leve o Kit Reforço Escolar por apenas R$ 29,90!</strong>
+        </p>
+        <p>
+          Essa é a sua chance de se destacar em sala de aula e potencializar seus
+          resultados. Você não vai querer perder essa oportunidade!
+        </p>
+        <button
+          class="offer-btn"
+          onclick="window.open('https://go.hotmart.com/C96062750X?dp=1', '_blank');"
+        >
+          Sim, quero aproveitar!
+        </button>
+        <button class="close-btn" onclick="closePopup();">Não, obrigado</button>
+      </div>
+    </div>
+
+    <style>
+      /* Estilos do Pop-up */
+      #popup {
+        display: none; /* Esconde o pop-up inicialmente */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .popup-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        width: 350px;
+      }
+
+      h2 {
+        color: #d9534f; /* Vermelho Escuro */
+      }
+
+      p {
+        margin: 10px 0;
+      }
+
+      .close-btn {
+        background-color: #f44336; /* Vermelho */
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+
+      .offer-btn {
+        background-color: #5cb85c; /* Verde */
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+
+      .offer-btn:hover,
+      .close-btn:hover {
+        opacity: 0.9; /* Efeito de hover */
+      }
+    </style>
+
+    <script>
+      // Função para exibir o pop-up
+      function showPopup() {
+        document.getElementById('popup').style.display = 'flex'
+      }
+
+      // Função para fechar o pop-up
+      function closePopup() {
+        document.getElementById('popup').style.display = 'none'
+      }
+
+      // Detecta o movimento do mouse para fora da janela
+      document.addEventListener('mouseout', function (event) {
+        if (event.clientY < 0) {
+          // Se o mouse sair pela parte superior da janela
+          showPopup()
+        }
+      })
     </script>
-
-<!-- Pop-up HTML -->
-<div id="popup">
-  <div class="popup-content">
-    <h2>Espere! Não Vá Ainda!</h2>
-    <p>Parece que você está prestes a sair da página. Antes de ir, temos uma oferta incrível para você!</p>
-    <p><strong>Leve o Kit Reforço Escolar por apenas R$ 29,90!</strong></p>
-    <p>Essa é a sua chance de se destacar em sala de aula e ampliar seus resultados. Você não vai querer perder essa oportunidade!</p>
-    <button
-      class="offer-btn"
-      onclick="window.open('https://go.hotmart.com/C96062750X?dp=1', '_blank');"
-    >
-      Sim, quero aproveitar!
-    </button>
-    <button class="close-btn" onclick="closePopup();">Não, obrigado</button>
-  </div>
-</div>
-
-<style>
-  /* Estilos do Pop-up */
-  #popup {
-    display: none; /* Esconde o pop-up inicialmente */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .popup-content {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 350px;
-    max-width: 90%;
-  }
-
-  h2 {
-    color: #d9534f;
-  }
-
-  p {
-    margin: 10px 0;
-  }
-
-  .close-btn, .offer-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-top: 10px;
-    border-radius: 5px;
-  }
-</style>
-
-<script>
-  // Função para exibir o pop-up
-  function showPopup() {
-    document.getElementById('popup').style.display = 'flex';
-  }
-
-  // Função para fechar o pop-up
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-  }
-
-  // Função para bloquear o pop-up de downsell se a oferta principal for clicada
-  let downsellBlocked = false;
-  function blockDownsellPopup() {
-    downsellBlocked = true;
-  }
-
-  // Pop-up para dispositivos móveis baseado em inatividade e sem clique na oferta principal
-  if (/Mobi|Android/i.test(navigator.userAgent)) {
-    setTimeout(function() {
-      if (!downsellBlocked) {
-        showPopup();
-      }
-    }, 45000); // Tempo em milissegundos (45 segundos de inatividade)
-  } else {
-    // Detecta o movimento do mouse para fora da janela no desktop
-    document.addEventListener('mouseout', function (event) {
-      if (event.clientY < 0) {
-        showPopup();
-      }
-    });
-  }
-</script>
-
   </body>
 </html>
