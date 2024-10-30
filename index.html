@@ -2624,6 +2624,7 @@ src="https://www.facebook.com/tr?id=441626871904892&ev=PageView&noscript=1"
   // Variáveis para controlar o estado do popup e temporizador
   let popupShown = false;
   let inactivityTimer;
+  let allowExitPopup = false; // Controla o tempo de navegação na página
 
   // Função para exibir o pop-up
   function showPopup() {
@@ -2640,14 +2641,19 @@ src="https://www.facebook.com/tr?id=441626871904892&ev=PageView&noscript=1"
     resetInactivityTimer(); // Reseta o timer ao fechar
   }
 
-  // Detecta o movimento do mouse para fora da janela
+  // Detecta o movimento do mouse para fora da janela após 30 segundos
   document.addEventListener('mouseout', function (event) {
-    if (event.clientY < 0) {
+    if (allowExitPopup && event.clientY < 0) {
       showPopup();
     }
   });
 
-  // Função para configurar o timer de inatividade
+  // Define um temporizador para permitir a exibição do pop-up após 30 segundos
+  setTimeout(function () {
+    allowExitPopup = true;
+  }, 30000); // 30000 ms = 30 segundos
+
+  // Função para configurar o timer de inatividade no mobile
   function setupInactivityTimer() {
     inactivityTimer = setTimeout(showPopup, 70000); // 70 segundos
   }
